@@ -195,6 +195,7 @@
             grpoption.TabIndex = 12;
             grpoption.TabStop = false;
             grpoption.Text = "추가 옵션";
+            grpoption.Enter += grpoption_Enter;
             // 
             // lstOrder
             // 
@@ -225,6 +226,7 @@
             grporder.TabIndex = 15;
             grporder.TabStop = false;
             grporder.Text = "주문 내역";
+            grporder.Enter += grporder_Enter;
             // 
             // btnorder
             // 
@@ -235,6 +237,7 @@
             btnorder.TabIndex = 16;
             btnorder.Text = "주문하기";
             btnorder.UseVisualStyleBackColor = true;
+            btnorder.Click += btnorder_Click;
             // 
             // btnreset
             // 
