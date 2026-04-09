@@ -99,5 +99,86 @@ namespace BurgerKiosk
 
             }
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Control[] choiceGroup = { rdoHamBurger, rdoBulgogiBurger, rdoChickenBurger };
+            Control[] optionGroup = { chkPotato, chkCola, chkCheese, chkSauce };
+
+            if (keyData == Keys.Enter)
+            {
+                btnorder.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.Tab || keyData == (Keys.Tab | Keys.Shift))
+            {
+                bool forward = (keyData == Keys.Tab);
+
+                if (Array.IndexOf(choiceGroup, ActiveControl) >= 0)
+                {
+                    if (forward) chkPotato.Focus();
+                    else btnreset.Focus();
+                    return true;
+                }
+                else if (Array.IndexOf(optionGroup, ActiveControl) >= 0)
+                {
+                    if (forward) btnorder.Focus();
+                    else rdoHamBurger.Focus();
+                    return true;
+                }
+                else if (ActiveControl == btnorder)
+                {
+                    if (forward) btnreset.Focus();
+                    else chkPotato.Focus();
+                    return true;
+                }
+                else if (ActiveControl == btnreset)
+                {
+                    if (forward) rdoHamBurger.Focus();
+                    else btnorder.Focus();
+                    return true;
+                }
+                else
+                {
+                    rdoHamBurger.Focus();
+                    return true;
+                }
+            }
+
+            if (keyData == Keys.Down || keyData == Keys.Right)
+            {
+                if (Array.IndexOf(choiceGroup, ActiveControl) >= 0)
+                {
+                    int idx = (Array.IndexOf(choiceGroup, ActiveControl) + 1) % choiceGroup.Length;
+                    choiceGroup[idx].Focus();
+                    return true;
+                }
+                else if (Array.IndexOf(optionGroup, ActiveControl) >= 0)
+                {
+                    int idx = (Array.IndexOf(optionGroup, ActiveControl) + 1) % optionGroup.Length;
+                    optionGroup[idx].Focus();
+                    return true;
+                }
+            }
+
+            if (keyData == Keys.Up || keyData == Keys.Left)
+            {
+                if (Array.IndexOf(choiceGroup, ActiveControl) >= 0)
+                {
+                    int idx = (Array.IndexOf(choiceGroup, ActiveControl) - 1 + choiceGroup.Length) % choiceGroup.Length;
+                    choiceGroup[idx].Focus();
+                    return true;
+                }
+                else if (Array.IndexOf(optionGroup, ActiveControl) >= 0)
+                {
+                    int idx = (Array.IndexOf(optionGroup, ActiveControl) - 1 + optionGroup.Length) % optionGroup.Length;
+                    optionGroup[idx].Focus();
+                    return true;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
