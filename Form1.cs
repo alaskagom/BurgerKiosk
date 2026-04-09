@@ -5,9 +5,62 @@ namespace BurgerKiosk
         public Form1()
         {
             InitializeComponent();
+
+            rdoHamBurger.CheckedChanged += (s, e) => UpdateOrder();
+            rdoBulgogiBurger.CheckedChanged += (s, e) => UpdateOrder();
+            rdoChickenBurger.CheckedChanged += (s, e) => UpdateOrder();
+            chkPotato.CheckedChanged += (s, e) => UpdateOrder();
+            chkCola.CheckedChanged += (s, e) => UpdateOrder();
+            chkCheese.CheckedChanged += (s, e) => UpdateOrder();
+            chkSauce.CheckedChanged += (s, e) => UpdateOrder();
         }
 
         int totalCost = 0;
+
+        private void UpdateOrder()
+        {
+            totalCost = 0;
+            lstOrder.Items.Clear();
+
+            if (rdoHamBurger.Checked)
+            {
+                totalCost += 5000;
+                lstOrder.Items.Add("햄버거5,000원");
+            }
+            else if (rdoBulgogiBurger.Checked)
+            {
+                totalCost += 4000;
+                lstOrder.Items.Add("불고기버거4,000원");
+            }
+            else if (rdoChickenBurger.Checked)
+            {
+                totalCost += 3000;
+                lstOrder.Items.Add("치킨버거3,000원");
+            }
+
+            if (chkPotato.Checked)
+            {
+                totalCost += 3500;
+                lstOrder.Items.Add("감자튀김3,500원");
+            }
+            if (chkCola.Checked)
+            {
+                totalCost += 2500;
+                lstOrder.Items.Add("콜라2,500원");
+            }
+            if (chkCheese.Checked)
+            {
+                totalCost += 1500;
+                lstOrder.Items.Add("치즈1,500원");
+            }
+            if (chkSauce.Checked)
+            {
+                totalCost += 500;
+                lstOrder.Items.Add("소스500원");
+            }
+
+            lblTotalPrice.Text = "총 금액: " + (totalCost == 0 ? "0" : totalCost.ToString("#,0")) + "원";
+        }
 
         private void btnreset_Click(object sender, EventArgs e)
         {
@@ -49,54 +102,7 @@ namespace BurgerKiosk
             else
             {
                 lbl2.Visible = false;
-
-
-
-
-
-                totalCost = 0;
-                lstOrder.Items.Clear();
-
-                if (rdoHamBurger.Checked)
-                {
-                    totalCost += 5000;
-                    lstOrder.Items.Add("햄버거5,000원");
-                }
-                else if (rdoBulgogiBurger.Checked)
-                {
-                    totalCost += 4000;
-                    lstOrder.Items.Add("불고기버거4,000원");
-                }
-                else if (rdoChickenBurger.Checked)
-                {
-                    totalCost += 3000;
-                    lstOrder.Items.Add("치킨버거3,000원");
-                }
-
-                if (chkPotato.Checked)
-                {
-                    totalCost += 3500;
-                    lstOrder.Items.Add("감자튀김3,500원");
-                }
-                if (chkCola.Checked)
-                {
-                    totalCost += 2500;
-                    lstOrder.Items.Add("콜라2,500원");
-                }
-                if (chkCheese.Checked)
-                {
-                    totalCost += 1500;
-                    lstOrder.Items.Add("치즈1,500원");
-                }
-                if (chkSauce.Checked)
-                {
-                    totalCost += 500;
-                    lstOrder.Items.Add("소스500원");
-                }
-
-                lblTotalPrice.Text = "총 금액: " + totalCost.ToString("#,0") + "원";
-
-
+                UpdateOrder();
             }
         }
 
