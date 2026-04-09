@@ -46,6 +46,7 @@
             grporder = new GroupBox();
             btnorder = new Button();
             btnreset = new Button();
+            lbl2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -231,7 +232,7 @@
             // btnorder
             // 
             btnorder.Font = new Font("맑은 고딕", 12F);
-            btnorder.Location = new Point(707, 479);
+            btnorder.Location = new Point(707, 496);
             btnorder.Name = "btnorder";
             btnorder.Size = new Size(122, 53);
             btnorder.TabIndex = 16;
@@ -242,7 +243,7 @@
             // btnreset
             // 
             btnreset.Font = new Font("맑은 고딕", 12F);
-            btnreset.Location = new Point(850, 479);
+            btnreset.Location = new Point(850, 496);
             btnreset.Name = "btnreset";
             btnreset.Size = new Size(122, 53);
             btnreset.TabIndex = 17;
@@ -250,11 +251,24 @@
             btnreset.UseVisualStyleBackColor = true;
             btnreset.Click += btnreset_Click;
             // 
+            // lbl2
+            // 
+            lbl2.AutoSize = true;
+            lbl2.Font = new Font("맑은 고딕", 12F);
+            lbl2.ForeColor = Color.Red;
+            lbl2.Location = new Point(718, 462);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(183, 28);
+            lbl2.TabIndex = 19;
+            lbl2.Text = "메뉴를 선택하세요.";
+            lbl2.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1016, 571);
+            Controls.Add(lbl2);
             Controls.Add(btnreset);
             Controls.Add(btnorder);
             Controls.Add(lblTotalPrice);
@@ -302,5 +316,6 @@
         private GroupBox grporder;
         private Button btnorder;
         private Button btnreset;
+        private Label lbl2;
     }
 }
